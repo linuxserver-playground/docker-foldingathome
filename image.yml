@@ -8,9 +8,10 @@ summary: |-
 upstream:
   url: https://foldingathome.org/
   version:
-    type: command
-    run: |-
-      curl -s https://download.foldingathome.org/releases/public/fah-client/meta.json | jq -r '.[] | select((.package | contains("amd64.deb")) and (.package | contains("release"))) | .package' | awk -F'(fah-client_|_amd64.deb)' '{print $2}' | sort -rV | head -1
+    type: json
+    url: https://download.foldingathome.org/releases/public/fah-client/meta.json
+    jq: .[] | .package | select(contains("amd64.deb") and contains("release")) | capture("fah-client_(?<v>[^_]+)_amd64").v
+    sort: version
   sponsor:
   - name: Folding@home
     url: https://foldingathome.org/about/donate/
