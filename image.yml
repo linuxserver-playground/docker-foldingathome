@@ -14,7 +14,7 @@ upstream:
     sort: version
   sponsor:
   - name: Folding@home
-    url: https://foldingathome.org/about/donate/
+    url: https://foldingathome.org/donate/
 
 release:
   branch: master
